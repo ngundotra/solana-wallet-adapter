@@ -29,6 +29,7 @@ export const WalletModal: FC<WalletModalProps> = ({ className = '', container = 
         const notDetected: Wallet[] = [];
 
         for (const wallet of wallets) {
+            if (!('signIn' in wallet.adapter)) continue;
             if (wallet.readyState === WalletReadyState.NotDetected) {
                 notDetected.push(wallet);
             } else if (wallet.readyState === WalletReadyState.Loadable) {
